@@ -16,6 +16,9 @@ public class Solution {
     public boolean isValid(String s) {
         char[] charArray = s.toCharArray();
 
+        if (charArray.length % 2 != 0)
+            return false;
+
         ListNode preListNode = null;
         for (char b : charArray) {
 
@@ -48,6 +51,31 @@ public class Solution {
             }
         }
 
-        return true;
+        return preListNode == null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("lesson 2 HW - 2");
+
+        String s1 = "(()(({}{{{[]}}})())){}";
+        String s2 = "(()(({}{{{[]}}})())){}{";
+        String s3 = "(()(({}{{{[]}}})())){}{{";
+
+        Solution solutionBrackets = new Solution();
+
+        System.out.println("---");
+
+        System.out.println("isValid: " + s1 + " //true");
+        System.out.println(solutionBrackets.isValid(s1));
+
+        System.out.println("---");
+
+        System.out.println("isValid: " + s2 + " //false");
+        System.out.println(solutionBrackets.isValid(s2));
+
+        System.out.println("---");
+
+        System.out.println("isValid: " + s3 + " //false");
+        System.out.println(solutionBrackets.isValid(s3));
     }
 }

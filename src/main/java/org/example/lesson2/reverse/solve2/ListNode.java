@@ -1,4 +1,4 @@
-package org.example.lesson2.brackets.solve2;
+package org.example.lesson2.reverse.solve2;
 
 /**
  * @author vero-git-hub
