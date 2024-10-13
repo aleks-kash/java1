@@ -1,7 +1,6 @@
-package org.example.lesson2.reverse.solve2;
+package org.example.lesson2.reverse.solve3;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,45 +13,48 @@ import java.util.List;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-
-/**
- * Reverse method using ArrayList, all reverse objects are new.
- */
 class Solution {
+    List<ListNode> nodes = new ArrayList<>();
+
     public ListNode reverseList(ListNode head) {
-        if (head == null) return null;
-
-        List<ListNode> listNodes = new ArrayList<>();
-
-        ListNode listNodeNext = head;
-        while (listNodeNext.next != null) {
-            listNodes.add(new ListNode(listNodeNext.val));
-            listNodeNext = listNodeNext.next;
-        }
-        listNodes.add(new ListNode(listNodeNext.val));
-
-        Collections.reverse(listNodes);
-
-        ListNode listNodeFirst = null;
-        listNodeNext = null;
-
-        for (ListNode listNodeNew : listNodes) {
-
-            if (listNodeFirst == null) {
-                listNodeFirst = listNodeNew;
-                listNodeNext = listNodeNew;
-                continue;
+        ListNode newNode = null;
+        if (head != null) {
+            ListNode node = head;
+            while(node != null) {
+                nodes.add(node);
+                node = node.next;
             }
 
-            listNodeNext.next = listNodeNew;
-            listNodeNext = listNodeNew;
+            int size = nodes.size();
+
+            int startIdx = 0;
+            int endIdx = size - 1;
+
+            int middleIdx = size / 2;
+
+            for (int i = startIdx; i < middleIdx; i++) {
+                int curr = nodes.get(i).val;
+                int end = nodes.get(endIdx - i).val;
+
+                nodes.get(i).val = end;
+                nodes.get(size - 1 - i).val = curr;
+            }
+
+            int currVal = nodes.get(startIdx).val;
+            ListNode nextHead = nodes.get(startIdx).next;
+
+            newNode = new ListNode(currVal, nextHead);
         }
 
-        return listNodeFirst;
+        if(newNode == null) {
+            return head;
+        }
+
+        return newNode;
     }
 
     public static void main(String[] args) {
-        System.out.println("lesson 2 HW - 1 (solve 2)");
+        System.out.println("lesson 2 HW - 1 (solve 3)");
 
         System.out.println("---");
 
