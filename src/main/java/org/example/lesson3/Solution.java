@@ -17,7 +17,7 @@ public class Solution {
                     .stream()
                     .map(grad -> new StudentGradeRecord(student.getName(), student.getSchool(), grad.getSubject(), grad.getScore()))
             )
-            .sorted(Comparator.comparing(StudentGradeRecord::getScore).reversed())
+            .sorted(Comparator.comparing(StudentGradeRecord::score).reversed())
             .limit(3)
             .forEach(System.out::println);
     }
